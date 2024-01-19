@@ -22,9 +22,3 @@ export class Project {
     }
 }
 
-// Example usage
-const todo1 = new Todo("Buy groceries", "Personal");
-const todo2 = new Todo("Finish coding assignment", "Work");
-
-todo1.display(); // Output: Todo: Buy groceries (Project: Personal)
-todo2.display(); // Output: Todo: Finish coding assignment (Project: Work)

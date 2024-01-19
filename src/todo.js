@@ -17,10 +17,3 @@ export class Todo {
     }
 }
 
-// Example usage
-const todo1 = new Todo("Buy groceries", "Personal", "Buy milk, eggs, and bread", "2021-05-01", "High");
-const todo2 = new Todo("Finish coding assignment", "Work", "Finish coding assignment", "2021-05-01", "High");
-
-todo1.display(); // Output: Todo: Buy groceries (Project: Personal)
-todo2.display(); // Output: Todo: Finish coding assignment (Project: Work)
-

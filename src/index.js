@@ -1,18 +1,10 @@
 import './style.css';
-import { Todo } from "./todo.js";
-import { Project } from "./projects.js";
+/*import { Todo } from "./todo.js";
+import { Project } from "./projects.js";*/
+import { controller } from './controller.js';     
 
-const aboutLink = document.getElementById("about-link");
-
-
-
-aboutLink.addEventListener("click", () => {
-    // Handle about link click event
-    content.innerHTML = "";
-    
-    
+document.addEventListener("DOMContentLoaded", function() {
+    controller.addProjectEventListener();
+    controller.addToDoEventListener();
+   
 });
-
-
-
-console.log("works!")

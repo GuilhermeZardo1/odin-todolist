@@ -126,3 +126,19 @@ p {
     margin: 10px;
     
 }
+
+li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+#project-list .active {
+    background-color: #ff9a3c;
+    color: white;
+}
+
+
+#todo-list .active {
+    background-color: #ff9a3c;
+    color: white;
+}
