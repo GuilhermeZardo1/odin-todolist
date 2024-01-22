@@ -11,6 +11,7 @@ const controller = function() {
     let addTodo = document.getElementById("add-to-do");
     let removeProject = document.getElementById("remove-project");
     let removeTodo = document.getElementById("remove-to-do");
+  
 
 
 
@@ -23,6 +24,8 @@ const controller = function() {
             console.log(project);
             viewFactory.hideAddProjectName();
             viewFactory.removeFormProjectName();
+            modelFactory.createProject(project);
+            console.log(library.projects);
             e.preventDefault();
            
           
@@ -32,7 +35,7 @@ const controller = function() {
 
     function addProjectEventListener(){
 
-        let addProject = document.getElementById("add-project");
+      
 
         addProject.addEventListener("click", function(e){
             viewFactory.createProjectName();

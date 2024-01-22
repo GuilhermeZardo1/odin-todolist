@@ -5,6 +5,10 @@ class Library {
     constructor() {
         this.projects = [];
     }
+
+    addProject(project) {
+        this.projects.push(project);
+    }
 }
 
 const library = new Library();
