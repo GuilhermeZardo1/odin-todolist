@@ -130,6 +130,7 @@ p {
 li {
     list-style-type: none;
     cursor: pointer;
+    
 }
 
 #project-list .active {
@@ -137,8 +138,45 @@ li {
     color: white;
 }
 
-
 #todo-list .active {
     background-color: #ff9a3c;
     color: white;
+}
+
+
+#subtitle{
+    font-size: 24px;
+    font-weight: 900;
+    color: #155263;
+    padding: 10px;
+}
+
+#description, #due-date, #priority, #notes {
+    display: inline-block;
+    margin: 0; /* Remover margens padrão */
+}
+
+.big-todo{
+    margin-bottom: 10px;
+}
+
+.hidden{
+    display: none;
+}
+
+.content-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
 }

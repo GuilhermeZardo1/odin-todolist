@@ -4,6 +4,7 @@ import { library } from "./library.js";
 import { viewFactory } from "./view.js";
 
 
+
 const controller = function() {
     let addProject = document.getElementById("add-project");
     let addTodo = document.getElementById("add-to-do");
@@ -11,8 +12,6 @@ const controller = function() {
     let removeTodo = document.getElementById("remove-to-do");
     
    
-    
-
     function addProjectEventListener(){
 
         addProject.addEventListener("click", function(){
@@ -39,7 +38,6 @@ const controller = function() {
             });
         }
 
-
     }
 
     function removeProjectEventListener(){
@@ -58,14 +56,13 @@ const controller = function() {
         
     }
 
-
 ///////////////////// Project and To-Dos separation ////////////////////////////////////////////////
 
 
 
     function addEventListenersToToDos(){
         
-        let todolist = document.querySelectorAll(".todo");
+        let todolist = document.querySelectorAll(".big-todo");
 
         for(let i = 0; i < todolist.length; i++){
             todolist[i].addEventListener("click", function(){
@@ -87,6 +84,7 @@ const controller = function() {
 
         addTodo.addEventListener("click", function(){
             viewFactory.createToDo();
+            editToDo();
             render();
     
         });
@@ -96,7 +94,7 @@ const controller = function() {
 
         
         removeTodo.addEventListener("click", function(){
-            let todos = document.querySelectorAll(".todo");
+            let todos = document.querySelectorAll(".big-todo");
             for(let i = 0; i < todos.length; i++){
                 if(todos[i].classList.contains("active")){
                     todos[i].remove();
@@ -108,6 +106,33 @@ const controller = function() {
         
     }
 
+    function editToDo(){
+        let editToDo = document.querySelectorAll(".edit-to-do");
+        for(let i = 0; i < editToDo.length; i++){
+            editToDo[i].addEventListener("click",  function(){
+                console.log("edit to do");  
+                viewFactory.editToDo();
+        });
+    }
+}
+
+    function showContent(){
+    let mainContent = document.querySelector(".main-content");
+    let form = document.querySelector(".edit-form");
+    let content = document.getElementById("content");
+    mainContent.classList.remove("hidden");
+    form.classList.add("hidden");
+    content.classList.remove("content-flex");
+
+    }
+
+    function submitEdit(){
+        let submit = document.getElementById("submit");
+        submit.addEventListener("click",  function(){
+                showContent();
+        });
+
+    }
 
     function render() {
 
@@ -124,17 +149,16 @@ const controller = function() {
 
     }
    
-
-
     return {
         addProjectEventListener,
         addToDoEventListener,
         removeProjectEventListener,
+        editToDo,
+        submitEdit,
         render
         
         
     }
-
 
 }();
 
