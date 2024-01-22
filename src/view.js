@@ -1,11 +1,15 @@
+import { controller } from './controller.js';   
+
 const viewFactory = function () {
     
-    function createProject(){
+    function createProject(title){
         let list = document.getElementById("project-list");
         let project = document.createElement("li");
-        project.textContent = "test";
+        project.textContent = title;
         project.classList.add("project");
-        list.appendChild(project); 
+        list.appendChild(project);
+        console.log(list.innerHTML);
+
     }
 
     function createToDo(){
@@ -116,12 +120,56 @@ const viewFactory = function () {
         
 
     }
+    
+    function createProjectName(){
+        let mainContent = document.querySelector(".main-content");
+        let content = document.getElementById("content");
+        mainContent.classList.add("hidden");
+        let form = document.createElement("form");
+        form.classList.add("project-name-form");
+        let title = document.createElement("input");
+        title.id = "project-name";
+        title.type = "text";
+        title.placeholder = "title";
+        let submitBtn = document.createElement("button");
+        submitBtn.id = "submit-project-name";
+        submitBtn.textContent = "submit";
+        let cancelBtn = document.createElement("button");
+        cancelBtn.id = "cancel-project-name";
+        cancelBtn.textContent = "cancel";
 
+        form.appendChild(title);
+        form.appendChild(submitBtn);
+        form.appendChild(cancelBtn);
+        content.appendChild(form);
+        content.classList.add("content-flex");
+
+        
+
+    }
+
+    function hideAddProjectName(){
+        let form = document.querySelector(".project-name-form");
+        form.classList.add("hidden");
+        let mainContent = document.querySelector(".main-content");
+        mainContent.classList.remove("hidden");
+        
+    }
+
+    function removeFormProjectName(){
+        let form = document.querySelector(".project-name-form");
+        form.remove();
+        
+    
+    }
 
     return {
         createProject,
         createToDo,
-        editToDo
+        editToDo,   
+        createProjectName,
+        hideAddProjectName,
+        removeFormProjectName,
     }
 }();
 
