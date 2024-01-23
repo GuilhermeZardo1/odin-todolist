@@ -35,8 +35,6 @@ const controller = function() {
 
     function addProjectEventListener(){
 
-      
-
         addProject.addEventListener("click", function(e){
             viewFactory.createProjectName();
             addProjectNameEventListener();
@@ -45,11 +43,24 @@ const controller = function() {
         });
     }
 
+    function removeProjectEventListener(){
+        removeProject.addEventListener("click", function(e){
+            viewFactory.removeProject();
+            e.preventDefault();
+        });
+    }
+
+    function render(){
+        console.log("alterado!");
+    }
+
 
     return {
        
         addProjectEventListener,
         addProjectNameEventListener,
+        removeProjectEventListener,
+        render
         
         
     }

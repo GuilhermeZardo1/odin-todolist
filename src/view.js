@@ -163,6 +163,11 @@ const viewFactory = function () {
     
     }
 
+    function removeProject(){
+        let list = document.getElementById("project-list");
+        list.removeChild(list.lastChild);
+    }
+
     return {
         createProject,
         createToDo,
@@ -170,6 +175,7 @@ const viewFactory = function () {
         createProjectName,
         hideAddProjectName,
         removeFormProjectName,
+        removeProject
     }
 }();
 
