@@ -18,14 +18,22 @@ const controller = function() {
     function addProjectNameEventListener(){
         let addProjectName = document.getElementById("submit-project-name");
         addProjectName.addEventListener("click", function(e){
-            console.log("hello");
-            let project = document.getElementById("project-name").value;
-            viewFactory.createProject(project);
-            console.log(project);
+            let projectName = document.getElementById("project-name").value;
+            viewFactory.createProject(projectName);
+            console.log('linha 23' + projectName);
             viewFactory.hideAddProjectName();
             viewFactory.removeFormProjectName();
-            modelFactory.createProject(project);
+            modelFactory.createProject(projectName);
+            if(Object.keys(library.projects).length === 1){
+                let project = document.querySelector(".project");
+                viewFactory.setActiveProject(project);
+                library.setActiveProject(projectName);
+                console.log(library.getActiveProject());
+                
+            }
+            console.log(library.getActiveProject());
             console.log(library.projects);
+            console.log(Object.keys(library.projects).length);
             e.preventDefault();
            
           
@@ -44,28 +52,44 @@ const controller = function() {
     }
 
     function removeProjectEventListener(){
+        console.log('linha 67 ' + library.projects);
+           console.log('linha 68 ' + Object.keys(library.projects).length);
+           console.log('linha 68 ' + library.getActiveProject());
         removeProject.addEventListener("click", function(e){
-            viewFactory.removeProject();
+            var projetoAtivo = library.getActiveProject();
+            console.log('linha 52 ' + projetoAtivo)
+            var id = projetoAtivo;
+            console.log('linha 56 ' + id);
+            viewFactory.removeProject(id);
+            modelFactory.removeProject(library.getActiveProject());
+            if(Object.keys(library.projects).length > 0){
+                library.setActiveProject(Object.keys(library.projects)[0]);
+                let projectId = document.getElementById(Object.keys(library.projects)[0]);
+                viewFactory.setActiveProject(projectId);
+            }
+          
             e.preventDefault();
+        });
+    }
+
+    function addEventListenerToProjects(){
+        let projects = document.querySelectorAll(".project");
+        projects.forEach(project => {
+            project.addEventListener("click", function(e){
+                let project = e.target;
+                e.preventDefault();
+            });
         });
     }
 
    
 
-    function addEventListenerToProjects(){
-        let projectList = document.getElementById("project-list");
-        for(let i = 0; i < projectList.children.length; i++){
-            projectList.children[i].addEventListener("click", function(e){
-                console.log("hello");
-                console.log(e.target);
-            });
-        }
-    }   
+      
 
 
     function render(){
-        console.log("alterado!");
         addEventListenerToProjects();
+        
     }
 
 

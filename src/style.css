@@ -133,15 +133,12 @@ li {
     
 }
 
-#project-list .active {
+.active {
     background-color: #ff9a3c;
     color: white;
 }
 
-#todo-list .active {
-    background-color: #ff9a3c;
-    color: white;
-}
+
 
 
 #subtitle{

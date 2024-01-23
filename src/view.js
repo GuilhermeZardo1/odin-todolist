@@ -6,6 +6,7 @@ const viewFactory = function () {
         let list = document.getElementById("project-list");
         let project = document.createElement("li");
         project.textContent = title;
+        project.id = title;
         project.classList.add("project");
         list.appendChild(project);
         console.log(list.innerHTML);
@@ -163,9 +164,21 @@ const viewFactory = function () {
     
     }
 
-    function removeProject(){
-        let list = document.getElementById("project-list");
-        list.removeChild(list.lastChild);
+    function removeProject(elemento){
+        let elementToRemove = document.getElementById(elemento);
+        console.log('linha 169 ' + elementToRemove);
+        if (elementToRemove && elementToRemove.parentNode) {
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+    }
+
+    function setActiveProject(elemento){
+        elemento.classList.add("active");
+    
+    }
+    function removeActiveProject(elemento){
+        elemento.classList.remove("active");
+    
     }
 
     return {
@@ -175,6 +188,8 @@ const viewFactory = function () {
         createProjectName,
         hideAddProjectName,
         removeFormProjectName,
+        setActiveProject,
+        removeActiveProject,
         removeProject
     }
 }();

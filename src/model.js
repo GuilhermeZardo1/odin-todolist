@@ -5,14 +5,20 @@ import { library } from "./library.js";
 const modelFactory = function(){
 
     function createProject(title){
-        let project = new Project(title, []);
+        let project = new Project(title, {});
         library.addProject(project);
+        
+    }
+
+    function removeProject(project){
+        library.removeProject(project.title);
     }
 
 
 
 return{
     createProject,
+    removeProject
 
 }
 }();
