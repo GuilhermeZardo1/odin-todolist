@@ -50,8 +50,22 @@ const controller = function() {
         });
     }
 
+   
+
+    function addEventListenerToProjects(){
+        let projectList = document.getElementById("project-list");
+        for(let i = 0; i < projectList.children.length; i++){
+            projectList.children[i].addEventListener("click", function(e){
+                console.log("hello");
+                console.log(e.target);
+            });
+        }
+    }   
+
+
     function render(){
         console.log("alterado!");
+        addEventListenerToProjects();
     }
 
 
@@ -60,6 +74,7 @@ const controller = function() {
         addProjectEventListener,
         addProjectNameEventListener,
         removeProjectEventListener,
+        addEventListenerToProjects,
         render
         
         
