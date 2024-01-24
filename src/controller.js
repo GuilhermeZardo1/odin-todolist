@@ -20,7 +20,6 @@ const controller = function() {
         addProjectName.addEventListener("click", function(e){
             let projectName = document.getElementById("project-name").value;
             viewFactory.createProject(projectName);
-            console.log('linha 23' + projectName);
             viewFactory.hideAddProjectName();
             viewFactory.removeFormProjectName();
             modelFactory.createProject(projectName);
@@ -28,12 +27,10 @@ const controller = function() {
                 let project = document.querySelector(".project");
                 viewFactory.setActiveProject(project);
                 library.setActiveProject(projectName);
-                console.log(library.getActiveProject());
+                
                 
             }
-            console.log(library.getActiveProject());
-            console.log(library.projects);
-            console.log(Object.keys(library.projects).length);
+         
             e.preventDefault();
            
           
@@ -52,14 +49,14 @@ const controller = function() {
     }
 
     function removeProjectEventListener(){
-        console.log('linha 67 ' + library.projects);
-           console.log('linha 68 ' + Object.keys(library.projects).length);
-           console.log('linha 68 ' + library.getActiveProject());
+     
         removeProject.addEventListener("click", function(e){
             var projetoAtivo = library.getActiveProject();
-            console.log('linha 52 ' + projetoAtivo)
-            var id = projetoAtivo;
-            console.log('linha 56 ' + id);
+            
+           
+            var id = projetoAtivo.title;
+            console.log(id);
+        
             viewFactory.removeProject(id);
             modelFactory.removeProject(library.getActiveProject());
             if(Object.keys(library.projects).length > 0){
@@ -67,7 +64,7 @@ const controller = function() {
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
                 viewFactory.setActiveProject(projectId);
             }
-          
+            console.log(library.projects);
             e.preventDefault();
         });
     }

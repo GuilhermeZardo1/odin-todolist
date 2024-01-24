@@ -9,7 +9,7 @@ const viewFactory = function () {
         project.id = title;
         project.classList.add("project");
         list.appendChild(project);
-        console.log(list.innerHTML);
+       
 
     }
 
@@ -166,7 +166,7 @@ const viewFactory = function () {
 
     function removeProject(elemento){
         let elementToRemove = document.getElementById(elemento);
-        console.log('linha 169 ' + elementToRemove);
+        
         if (elementToRemove && elementToRemove.parentNode) {
             elementToRemove.parentNode.removeChild(elementToRemove);
         }

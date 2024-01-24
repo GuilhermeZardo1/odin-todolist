@@ -10,7 +10,7 @@ class Library {
     addProject(project) {
         // Supondo que 'project' tenha uma propriedade 'name' que é única
         this.projects[project.title] = project;
-        console.log('linha 13 ' + project.title);
+        
     }
 
     removeProject(projectName) {
@@ -21,7 +21,7 @@ class Library {
     setActiveProject(projectName) {
         // Define o projeto ativo pelo nome
         this.activeProject = this.projects[projectName];
-        console.log('linha 24 ' + this.activeProject);
+        
     }
 
     getActiveProject() {
@@ -29,7 +29,7 @@ class Library {
     }
 
     printProjects() {
-        console.log(this.projects);
+        
     }
 }
 
