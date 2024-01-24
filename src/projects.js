@@ -22,7 +22,7 @@ export class Project {
 
     // Método para exibir todos os todos
     display() {
-        console.log(`Todos no projeto: ${this.title}`);
+       
         for (const id in this.todos) {
             console.log(`Todo ID: ${id}, Content: ${this.todos[id].content}`); // Supondo que cada todo tenha uma propriedade 'content'
         }

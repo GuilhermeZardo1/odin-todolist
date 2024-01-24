@@ -23,6 +23,7 @@ const controller = function() {
             viewFactory.hideAddProjectName();
             viewFactory.removeFormProjectName();
             modelFactory.createProject(projectName);
+            addEventListenerToProjects();
             if(Object.keys(library.projects).length === 1){
                 let project = document.querySelector(".project");
                 viewFactory.setActiveProject(project);
@@ -55,7 +56,7 @@ const controller = function() {
             
            
             var id = projetoAtivo.title;
-            console.log(id);
+            
         
             viewFactory.removeProject(id);
             modelFactory.removeProject(library.getActiveProject());
@@ -64,20 +65,31 @@ const controller = function() {
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
                 viewFactory.setActiveProject(projectId);
             }
-            console.log(library.projects);
+            console.log(library,projects);
             e.preventDefault();
         });
     }
+
 
     function addEventListenerToProjects(){
         let projects = document.querySelectorAll(".project");
         projects.forEach(project => {
             project.addEventListener("click", function(e){
-                let project = e.target;
-                e.preventDefault();
+                for(let i = 0; i < projects.length; i++){   
+                    if(projects[i].classList.contains("active")){
+                        viewFactory.removeActiveProject(projects[i]);
+                    }
+                    
+                    
+                }
+                e.target.classList.add("active");
+                library.setActiveProject(e.target.id);
+
+                
             });
         });
     }
+
 
    
 
@@ -85,7 +97,7 @@ const controller = function() {
 
 
     function render(){
-        addEventListenerToProjects();
+        
         
     }
 

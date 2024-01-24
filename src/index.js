@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function onChange() {
         controller.render();
+        console.log("Mudou");
     }
     
     // Cria uma instância do MutationObserver
