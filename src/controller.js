@@ -20,8 +20,9 @@ const controller = function() {
         addProjectName.addEventListener("click", function(e){
             let projectName = document.getElementById("project-name").value;
             viewFactory.createProject(projectName);
-            viewFactory.hideAddProjectName();
+            
             viewFactory.removeFormProjectName();
+            document.querySelector(".main-content").classList.remove("hidden");
             modelFactory.createProject(projectName);
             addEventListenerToProjects();
             if(Object.keys(library.projects).length === 1){
@@ -65,7 +66,7 @@ const controller = function() {
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
                 viewFactory.setActiveProject(projectId);
             }
-            console.log(library,projects);
+            console.log(library.projects);
             e.preventDefault();
         });
     }
@@ -90,6 +91,62 @@ const controller = function() {
         });
     }
 
+    function addTodoEventListener(){
+        addTodo.addEventListener("click", function(e){
+            if(library.getActiveProject() === null){
+                alert("You must create a project first!");
+                return;
+            }
+            viewFactory.addToDo();
+            addAddToDoBtnEventListener();
+            viewFactory.removeFormToDo();
+            e.preventDefault();
+            
+        });
+    }
+
+    function addEditEventListener(){
+        const btn = document.querySelectorAll(".edit-to-do");
+        for(let i = 0; i < btn.length; i++){
+        btn[i].addEventListener("click", function(e){
+            console.log("Editou");
+            viewFactory.editToDo();
+            addSubmitEventListener();
+            viewFactory.removeFormToDo();
+            
+            e.preventDefault();
+        });
+    }
+    }
+
+    function addSubmitEventListener(){
+        let submitBtn = document.getElementById("submit");
+        submitBtn.addEventListener("click", function(e){
+            viewFactory.createToDo();
+            
+            
+            e.preventDefault();
+        });
+    }
+
+    function addAddToDoBtnEventListener(){
+        let submitBtn = document.getElementById("add-to-do-btn");
+        submitBtn.addEventListener("click", function(e){
+            viewFactory.createToDo();
+            
+            addEditEventListener();
+            
+            e.preventDefault();
+        });
+    }
+
+    function showToDos(){
+        let project = library.getActiveProject();
+        let toDos = project.toDos;
+        for(let i = 0; i < toDos.length; i++){
+            viewFactory.createToDo();
+        }
+    }
 
    
 
@@ -97,6 +154,9 @@ const controller = function() {
 
 
     function render(){
+        
+
+
         
         
     }
@@ -108,6 +168,11 @@ const controller = function() {
         addProjectNameEventListener,
         removeProjectEventListener,
         addEventListenerToProjects,
+        addTodoEventListener,
+        addEditEventListener,
+        addSubmitEventListener,
+        showToDos,
+        addAddToDoBtnEventListener,
         render
         
         

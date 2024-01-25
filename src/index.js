@@ -11,10 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     controller.addProjectEventListener();
     controller.removeProjectEventListener();
+    controller.addTodoEventListener();
+    
 
     function onChange() {
         controller.render();
         console.log("Mudou");
+        
     }
     
     // Cria uma instância do MutationObserver

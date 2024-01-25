@@ -84,6 +84,12 @@ const viewFactory = function () {
     function editToDo(){
         let mainContent = document.querySelector(".main-content");
         let content = document.getElementById("content");
+
+        let existingForm = content.querySelector(".edit-form");
+        if (existingForm) {
+        content.removeChild(existingForm);
+        }
+        
         mainContent.classList.add("hidden");
         let form = document.createElement("form");
         form.classList.add("edit-form");
@@ -110,6 +116,53 @@ const viewFactory = function () {
         let btn = document.createElement("button");
         btn.id = "submit";
         btn.textContent = "submit";
+        form.appendChild(title);
+        form.appendChild(project);
+        form.appendChild(description);
+        form.appendChild(dueDate);
+        form.appendChild(priority);
+        form.appendChild(btn);
+        content.appendChild(form);
+        content.classList.add("content-flex");
+        
+
+    }
+
+    function addToDo(){
+        let mainContent = document.querySelector(".main-content");
+        let content = document.getElementById("content");
+
+        let existingForm = content.querySelector(".edit-form");
+        if (existingForm) {
+        content.removeChild(existingForm);
+        }
+        
+        mainContent.classList.add("hidden");
+        let form = document.createElement("form");
+        form.classList.add("edit-form");
+        let title = document.createElement("input");
+        title.id = "title";
+        title.type = "text";
+        title.placeholder = "title";
+        let project = document.createElement("input");
+        project.id = "project";
+        project.type = "text";
+        project.placeholder = "project";
+        let description = document.createElement("input");
+        description.id = "description";
+        description.type = "text";
+        description.placeholder = "description";
+        let dueDate = document.createElement("input");
+        dueDate.id = "dueDate";
+        dueDate.type = "text";
+        dueDate.placeholder = "due date";
+        let priority = document.createElement("input");
+        priority.id = "priority";
+        priority.type = "text";
+        priority.placeholder = "priority";
+        let btn = document.createElement("button");
+        btn.id = "add-to-do-btn";
+        btn.textContent = "add";
         form.appendChild(title);
         form.appendChild(project);
         form.appendChild(description);
@@ -157,8 +210,19 @@ const viewFactory = function () {
         
     }
 
+    
+
+    
+
     function removeFormProjectName(){
         let form = document.querySelector(".project-name-form");
+        form.remove();
+        
+    
+    }
+
+    function removeFormToDo(){
+        let form = document.querySelector(".edit-form");
         form.remove();
         
     
@@ -190,6 +254,8 @@ const viewFactory = function () {
         removeFormProjectName,
         setActiveProject,
         removeActiveProject,
+        addToDo,
+        removeFormToDo,
         removeProject
     }
 }();
