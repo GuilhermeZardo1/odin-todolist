@@ -10,7 +10,7 @@ const controller = function() {
     let addProject = document.getElementById("add-project");
     let addTodo = document.getElementById("add-to-do");
     let removeProject = document.getElementById("remove-project");
-    let removeTodo = document.getElementById("remove-to-do");
+    
   
 
 
@@ -23,6 +23,7 @@ const controller = function() {
             
             viewFactory.removeFormProjectName();
             document.querySelector(".main-content").classList.remove("hidden");
+            document.getElementById("content").classList.remove("content-flex");
             modelFactory.createProject(projectName);
             addEventListenerToProjects();
             if(Object.keys(library.projects).length === 1){
@@ -91,38 +92,53 @@ const controller = function() {
         });
     }
 
+    function removeToDoEventListener(btn){
+        let removetodo = btn;
+        removetodo.addEventListener("click", function(e){
+            console.log('linha 97');
+            viewFactory.removeToDo(btn.parentNode);
+        });
+    }
+
+  
+
+        
+
+
     function addTodoEventListener(){
         addTodo.addEventListener("click", function(e){
             if(library.getActiveProject() === null){
                 alert("You must create a project first!");
                 return;
             }
-            viewFactory.addToDo();
+            viewFactory.addToDo();  
             addAddToDoBtnEventListener();
-            viewFactory.removeFormToDo();
+            
+            
             e.preventDefault();
             
         });
     }
 
     function addEditEventListener(){
-        const btn = document.querySelectorAll(".edit-to-do");
-        for(let i = 0; i < btn.length; i++){
-        btn[i].addEventListener("click", function(e){
-            console.log("Editou");
+        const btn = document.querySelector(".edit-to-do");
+        btn.addEventListener("click", function(e){
             viewFactory.editToDo();
+    
             addSubmitEventListener();
-            viewFactory.removeFormToDo();
-            
             e.preventDefault();
         });
     }
-    }
+    
+   
 
     function addSubmitEventListener(){
         let submitBtn = document.getElementById("submit");
         submitBtn.addEventListener("click", function(e){
-            viewFactory.createToDo();
+            
+            viewFactory.removeFormToDo();
+            document.querySelector(".main-content").classList.remove("hidden");
+            document.getElementById("content").classList.remove("content-flex");
             
             
             e.preventDefault();
@@ -133,7 +149,9 @@ const controller = function() {
         let submitBtn = document.getElementById("add-to-do-btn");
         submitBtn.addEventListener("click", function(e){
             viewFactory.createToDo();
-            
+            viewFactory.removeFormToDo();   
+            document.querySelector(".main-content").classList.remove("hidden");
+            document.getElementById("content").classList.remove("content-flex");
             addEditEventListener();
             
             e.preventDefault();
@@ -154,11 +172,13 @@ const controller = function() {
 
 
     function render(){
-        
 
 
-        
-        
+       
+       
+            
+      
+      
     }
 
 
@@ -173,6 +193,7 @@ const controller = function() {
         addSubmitEventListener,
         showToDos,
         addAddToDoBtnEventListener,
+        removeToDoEventListener,
         render
         
         

@@ -21,6 +21,9 @@ const viewFactory = function () {
         let btn = document.createElement("button");
         btn.classList.add("edit-to-do");
         btn.textContent = "edit";
+        let btnremove = document.createElement("button");
+        btnremove.classList.add("btn-remove");
+        btnremove.textContent = "remove";
         
         let todo1 = document.createElement("li");
         let span1 = document.createElement("span");
@@ -73,8 +76,19 @@ const viewFactory = function () {
         bigTodo.appendChild(todo4);
 
         bigTodo.appendChild(btn);
+        bigTodo.appendChild(btnremove);
+        btn.addEventListener("click", function(e){
+            viewFactory.editToDo();
+    
+            controller.addSubmitEventListener();
+            e.preventDefault();
+        });
+
+        controller.removeToDoEventListener(btnremove);
+        
 
         list2.appendChild(bigTodo);
+        
 
 
         
@@ -84,13 +98,16 @@ const viewFactory = function () {
     function editToDo(){
         let mainContent = document.querySelector(".main-content");
         let content = document.getElementById("content");
-
+      
         let existingForm = content.querySelector(".edit-form");
+    
         if (existingForm) {
         content.removeChild(existingForm);
         }
         
         mainContent.classList.add("hidden");
+        content.classList.add("content-flex");
+      
         let form = document.createElement("form");
         form.classList.add("edit-form");
         let title = document.createElement("input");
@@ -123,7 +140,8 @@ const viewFactory = function () {
         form.appendChild(priority);
         form.appendChild(btn);
         content.appendChild(form);
-        content.classList.add("content-flex");
+        
+      
         
 
     }
@@ -133,10 +151,11 @@ const viewFactory = function () {
         let content = document.getElementById("content");
 
         let existingForm = content.querySelector(".edit-form");
+  
         if (existingForm) {
         content.removeChild(existingForm);
         }
-        
+     
         mainContent.classList.add("hidden");
         let form = document.createElement("form");
         form.classList.add("edit-form");
@@ -207,6 +226,7 @@ const viewFactory = function () {
         form.classList.add("hidden");
         let mainContent = document.querySelector(".main-content");
         mainContent.classList.remove("hidden");
+        document.getElementById("content").classList.remove("content-flex");
         
     }
 
@@ -243,6 +263,16 @@ const viewFactory = function () {
     function removeActiveProject(elemento){
         elemento.classList.remove("active");
     
+
+        
+    }
+
+    function removeToDo(elemento){
+        let elementToRemove = elemento;
+        
+        if (elementToRemove && elementToRemove.parentNode) {
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
     }
 
     return {
@@ -256,7 +286,8 @@ const viewFactory = function () {
         removeActiveProject,
         addToDo,
         removeFormToDo,
-        removeProject
+        removeProject,
+        removeToDo,
     }
 }();
 
