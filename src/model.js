@@ -25,9 +25,9 @@ const modelFactory = function(){
         return todo;
     }
 
-    function addToDo(title, project, description, dueDate, priority){
-        let todo = new Todo(title, project, description, dueDate, priority);
-        library.activeProject.toDos.push(todo);
+    function addToDo(project, title, description, dueDate, priority){
+        let todo = new Todo(project, title, description, dueDate, priority);
+        library.activeProject.todos.push(todo);
         return todo;
     }
 

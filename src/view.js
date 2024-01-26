@@ -13,11 +13,12 @@ const viewFactory = function () {
 
     }
 
-    function createToDo(){
+    function createToDo() {
 
         let list2 = document.getElementById("todo-list");
         let bigTodo = document.createElement("div");
         bigTodo.classList.add("big-todo");
+        
         let btn = document.createElement("button");
         btn.classList.add("edit-to-do");
         btn.textContent = "edit";
@@ -30,51 +31,54 @@ const viewFactory = function () {
         let p1 = document.createElement("p");
       
         todo1.classList.add("itens");
-        span1.id = "subtitle";
-        span1.textContent = "description:";
-        p1.id = "description";
-        p1.textContent = "description";
+        span1.classList.add("subtitle"); // Alterado de id para class
+        span1.textContent = "title:";
+        p1.classList.add("title"); // Alterado de id para class
+        p1.textContent = "título único";
+        bigTodo.id = p1.textContent;
         span1.appendChild(p1);
         todo1.appendChild(span1);
         bigTodo.appendChild(todo1);
-        
-
-        let todo2 = document.createElement("li");
-        let span2 = document.createElement("span");
-        let p2 = document.createElement("p");
-        todo2.classList.add("itens");
-        span2.id = "subtitle";
-        span2.textContent = "due date:";
-        p2.id = "due-date";
-        p2.textContent = "due date";
-        span2.appendChild(p2);
-        todo2.appendChild(span2);
-        bigTodo.appendChild(todo2);
-
-        let todo3 = document.createElement("li");
-        let span3 = document.createElement("span");
-        let p3 = document.createElement("p");
-        todo3.classList.add("itens");
-        span3.id = "subtitle";
-        span3.textContent = "priority:";
-        p3.id = "priority";
-        p3.textContent = "priority";
-        span3.appendChild(p3);
-        todo3.appendChild(span3);
-        bigTodo.appendChild(todo3);
 
         let todo4 = document.createElement("li");
         let span4 = document.createElement("span");
         let p4 = document.createElement("p");
         todo4.classList.add("itens");
-        span4.id = "subtitle";
-        span4.textContent = "notes:";
-        p4.id = "notes";
-        p4.textContent = "notes";   
+        span4.classList.add("subtitle"); // Alterado de id para class
+        span4.textContent = "description:";
+        p4.classList.add("description"); // Alterado de id para class
+        p4.textContent = "description";   
         span4.appendChild(p4);
         todo4.appendChild(span4);
         bigTodo.appendChild(todo4);
-
+        
+    
+        let todo2 = document.createElement("li");
+        let span2 = document.createElement("span");
+        let p2 = document.createElement("p");
+        todo2.classList.add("itens");
+        span2.classList.add("subtitle"); // Alterado de id para class
+        span2.textContent = "due date:";
+        p2.classList.add("due-date"); // Alterado de id para class
+        p2.textContent = "due date";
+        span2.appendChild(p2);
+        todo2.appendChild(span2);
+        bigTodo.appendChild(todo2);
+    
+        let todo3 = document.createElement("li");
+        let span3 = document.createElement("span");
+        let p3 = document.createElement("p");
+        todo3.classList.add("itens");
+        span3.classList.add("subtitle"); // Alterado de id para class
+        span3.textContent = "priority:";
+        p3.classList.add("priority"); // Alterado de id para class
+        p3.textContent = "priority";
+        span3.appendChild(p3);
+        todo3.appendChild(span3);
+        bigTodo.appendChild(todo3);
+    
+       
+    
         bigTodo.appendChild(btn);
         bigTodo.appendChild(btnremove);
         btn.addEventListener("click", function(e){
@@ -83,16 +87,11 @@ const viewFactory = function () {
             controller.addSubmitEventListener();
             e.preventDefault();
         });
-
+    
         controller.removeToDoEventListener(btnremove);
         
-
-        list2.appendChild(bigTodo);
-        
-
-
-        
-       
+    
+        list2.appendChild(bigTodo);    
     }
 
     function editToDo(){
@@ -114,10 +113,6 @@ const viewFactory = function () {
         title.id = "title";
         title.type = "text";
         title.placeholder = "title";
-        let project = document.createElement("input");
-        project.id = "project";
-        project.type = "text";
-        project.placeholder = "project";
         let description = document.createElement("input");
         description.id = "description";
         description.type = "text";
@@ -134,7 +129,6 @@ const viewFactory = function () {
         btn.id = "submit";
         btn.textContent = "submit";
         form.appendChild(title);
-        form.appendChild(project);
         form.appendChild(description);
         form.appendChild(dueDate);
         form.appendChild(priority);
@@ -163,10 +157,6 @@ const viewFactory = function () {
         title.id = "title";
         title.type = "text";
         title.placeholder = "title";
-        let project = document.createElement("input");
-        project.id = "project";
-        project.type = "text";
-        project.placeholder = "project";
         let description = document.createElement("input");
         description.id = "description";
         description.type = "text";
@@ -183,7 +173,6 @@ const viewFactory = function () {
         btn.id = "add-to-do-btn";
         btn.textContent = "add";
         form.appendChild(title);
-        form.appendChild(project);
         form.appendChild(description);
         form.appendChild(dueDate);
         form.appendChild(priority);

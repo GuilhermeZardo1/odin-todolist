@@ -146,13 +146,27 @@ const controller = function() {
     }
 
     function addAddToDoBtnEventListener(){
-        let submitBtn = document.getElementById("add-to-do-btn");
+        const submitBtn = document.getElementById("add-to-do-btn");
+        
+
         submitBtn.addEventListener("click", function(e){
+            
+            
             viewFactory.createToDo();
             viewFactory.removeFormToDo();   
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
             addEditEventListener();
+            const bigToDo = submitBtn.parentNode;
+            console.log(bigTo)
+            const title = bigToDo.querySelector(".title");
+            const project = library.getActiveProject();
+            const description = bigToDo.querySelector(".description");
+            const duedate = bigToDo.querySelector(".due-date");
+            const priority = bigToDo.querySelector(".priority");
+            modelFactory.addToDo(project, title.textContent, description.textContent, duedate.textContent, priority.textContent);
+            console.log(project.todos);
+            console.log('linha 161');
             
             e.preventDefault();
         });
