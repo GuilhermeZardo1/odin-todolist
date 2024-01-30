@@ -111,7 +111,8 @@ const controller = function() {
                 alert("You must create a project first!");
                 return;
             }
-            viewFactory.addToDo();  
+            viewFactory.addToDo();
+              
             addAddToDoBtnEventListener();
             
             
@@ -120,23 +121,44 @@ const controller = function() {
         });
     }
 
-    function addEditEventListener(){
+    function addEditEventListener(bigtodo){
         const btn = document.querySelector(".edit-to-do");
+        const title = document.querySelector(".title").value;
+        console.log(bigtodo);
+        
         btn.addEventListener("click", function(e){
-            viewFactory.editToDo();
+            
+            
+            viewFactory.editToDo(bigtodo);
     
-            addSubmitEventListener();
+            addSubmitEventListener(bigtodo);
             e.preventDefault();
         });
     }
     
    
 
-    function addSubmitEventListener(){
+    function addSubmitEventListener(bigtodo){
         let submitBtn = document.getElementById("submit");
+        
+        
         submitBtn.addEventListener("click", function(e){
+
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const dueDate = document.getElementById("dueDate").value;
+            const priority = document.getElementById("priority").value;
             
+        
+            
+           
+            viewFactory.createToDo(title, description, dueDate, priority);
             viewFactory.removeFormToDo();
+
+            viewFactory.removeToDo(bigtodo);
+
+            
+            
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
             
@@ -150,22 +172,22 @@ const controller = function() {
         
 
         submitBtn.addEventListener("click", function(e){
-            
-            
-            viewFactory.createToDo();
+        
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const dueDate = document.getElementById("dueDate").value;
+            const priority = document.getElementById("priority").value;
+            viewFactory.createToDo(title, description, dueDate, priority);
             viewFactory.removeFormToDo();   
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
-            addEditEventListener();
+            const bigtodo = document.getElementById(title);
+            addEditEventListener(bigtodo);
             const bigToDo = submitBtn.parentNode;
-            console.log(bigTo)
-            const title = bigToDo.querySelector(".title");
-            const project = library.getActiveProject();
-            const description = bigToDo.querySelector(".description");
-            const duedate = bigToDo.querySelector(".due-date");
-            const priority = bigToDo.querySelector(".priority");
-            modelFactory.addToDo(project, title.textContent, description.textContent, duedate.textContent, priority.textContent);
-            console.log(project.todos);
+            
+            
+            
+            
             console.log('linha 161');
             
             e.preventDefault();

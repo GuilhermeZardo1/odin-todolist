@@ -9,12 +9,12 @@ const viewFactory = function () {
         project.id = title;
         project.classList.add("project");
         list.appendChild(project);
-       
-
     }
 
-    function createToDo() {
+    function createToDo(title, description, dueDate, priority) {
 
+        
+        console.log(title, description, dueDate, priority);
         let list2 = document.getElementById("todo-list");
         let bigTodo = document.createElement("div");
         bigTodo.classList.add("big-todo");
@@ -34,7 +34,7 @@ const viewFactory = function () {
         span1.classList.add("subtitle"); // Alterado de id para class
         span1.textContent = "title:";
         p1.classList.add("title"); // Alterado de id para class
-        p1.textContent = "título único";
+        p1.textContent = title;
         bigTodo.id = p1.textContent;
         span1.appendChild(p1);
         todo1.appendChild(span1);
@@ -47,7 +47,7 @@ const viewFactory = function () {
         span4.classList.add("subtitle"); // Alterado de id para class
         span4.textContent = "description:";
         p4.classList.add("description"); // Alterado de id para class
-        p4.textContent = "description";   
+        p4.textContent = description;   
         span4.appendChild(p4);
         todo4.appendChild(span4);
         bigTodo.appendChild(todo4);
@@ -60,7 +60,7 @@ const viewFactory = function () {
         span2.classList.add("subtitle"); // Alterado de id para class
         span2.textContent = "due date:";
         p2.classList.add("due-date"); // Alterado de id para class
-        p2.textContent = "due date";
+        p2.textContent = dueDate;
         span2.appendChild(p2);
         todo2.appendChild(span2);
         bigTodo.appendChild(todo2);
@@ -72,12 +72,12 @@ const viewFactory = function () {
         span3.classList.add("subtitle"); // Alterado de id para class
         span3.textContent = "priority:";
         p3.classList.add("priority"); // Alterado de id para class
-        p3.textContent = "priority";
+        p3.textContent = priority;
         span3.appendChild(p3);
         todo3.appendChild(span3);
         bigTodo.appendChild(todo3);
     
-       
+        
     
         bigTodo.appendChild(btn);
         bigTodo.appendChild(btnremove);
@@ -262,6 +262,8 @@ const viewFactory = function () {
         if (elementToRemove && elementToRemove.parentNode) {
             elementToRemove.parentNode.removeChild(elementToRemove);
         }
+
+        console.log("removeu!");
     }
 
     return {
