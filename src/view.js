@@ -14,7 +14,7 @@ const viewFactory = function () {
     function createToDo(title, description, dueDate, priority) {
 
         
-        console.log(title, description, dueDate, priority);
+        
         let list2 = document.getElementById("todo-list");
         let bigTodo = document.createElement("div");
         bigTodo.classList.add("big-todo");
@@ -82,7 +82,7 @@ const viewFactory = function () {
         bigTodo.appendChild(btn);
         bigTodo.appendChild(btnremove);
         btn.addEventListener("click", function(e){
-            viewFactory.editToDo();
+            viewFactory.editToDo(btn.parentNode);
     
             controller.addSubmitEventListener();
             e.preventDefault();
@@ -94,7 +94,7 @@ const viewFactory = function () {
         list2.appendChild(bigTodo);    
     }
 
-    function editToDo(){
+    function editToDo(parentNode){
         let mainContent = document.querySelector(".main-content");
         let content = document.getElementById("content");
       
@@ -134,11 +134,20 @@ const viewFactory = function () {
         form.appendChild(priority);
         form.appendChild(btn);
         content.appendChild(form);
-        
-      
-        
 
-    }
+        btn.addEventListener("click", function(e){
+
+            
+            parentNode.querySelector(".title").textContent = title.value;
+            parentNode.querySelector(".description").textContent = description.value;
+            parentNode.querySelector(".due-date").textContent = dueDate.value;
+            parentNode.querySelector(".priority").textContent = priority.value;
+            viewFactory.removeFormToDo();   
+            document.querySelector(".main-content").classList.remove("hidden");
+            document.getElementById("content").classList.remove("content-flex");
+        
+    });
+}
 
     function addToDo(){
         let mainContent = document.querySelector(".main-content");
@@ -258,13 +267,14 @@ const viewFactory = function () {
 
     function removeToDo(elemento){
         let elementToRemove = elemento;
-        
         if (elementToRemove && elementToRemove.parentNode) {
             elementToRemove.parentNode.removeChild(elementToRemove);
         }
 
-        console.log("removeu!");
+        
     }
+
+    
 
     return {
         createProject,
@@ -279,6 +289,7 @@ const viewFactory = function () {
         removeFormToDo,
         removeProject,
         removeToDo,
+        
     }
 }();
 

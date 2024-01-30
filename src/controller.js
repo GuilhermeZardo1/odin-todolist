@@ -67,7 +67,7 @@ const controller = function() {
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
                 viewFactory.setActiveProject(projectId);
             }
-            console.log(library.projects);
+            
             e.preventDefault();
         });
     }
@@ -95,7 +95,7 @@ const controller = function() {
     function removeToDoEventListener(btn){
         let removetodo = btn;
         removetodo.addEventListener("click", function(e){
-            console.log('linha 97');
+            
             viewFactory.removeToDo(btn.parentNode);
         });
     }
@@ -121,15 +121,17 @@ const controller = function() {
         });
     }
 
-    function addEditEventListener(bigtodo){
-        const btn = document.querySelector(".edit-to-do");
-        const title = document.querySelector(".title").value;
-        console.log(bigtodo);
+    function addEditEventListener(){
+
+        let btn = document.querySelector(".edit-to-do");
+       
         
         btn.addEventListener("click", function(e){
             
-            
-            viewFactory.editToDo(bigtodo);
+            const bigtodo = e.target.parentNode;
+           
+        
+            viewFactory.editToDo(btn.parentNode);
     
             addSubmitEventListener(bigtodo);
             e.preventDefault();
@@ -138,30 +140,13 @@ const controller = function() {
     
    
 
-    function addSubmitEventListener(bigtodo){
+    function addSubmitEventListener(){
         let submitBtn = document.getElementById("submit");
         
         
         submitBtn.addEventListener("click", function(e){
 
-            const title = document.getElementById("title").value;
-            const description = document.getElementById("description").value;
-            const dueDate = document.getElementById("dueDate").value;
-            const priority = document.getElementById("priority").value;
-            
-        
-            
            
-            viewFactory.createToDo(title, description, dueDate, priority);
-            viewFactory.removeFormToDo();
-
-            viewFactory.removeToDo(bigtodo);
-
-            
-            
-            document.querySelector(".main-content").classList.remove("hidden");
-            document.getElementById("content").classList.remove("content-flex");
-            
             
             e.preventDefault();
         });
@@ -172,23 +157,25 @@ const controller = function() {
         
 
         submitBtn.addEventListener("click", function(e){
-        
+
             const title = document.getElementById("title").value;
             const description = document.getElementById("description").value;
             const dueDate = document.getElementById("dueDate").value;
             const priority = document.getElementById("priority").value;
+        
+      
             viewFactory.createToDo(title, description, dueDate, priority);
             viewFactory.removeFormToDo();   
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
-            const bigtodo = document.getElementById(title);
-            addEditEventListener(bigtodo);
-            const bigToDo = submitBtn.parentNode;
+            
+            addEditEventListener();
+         
             
             
             
             
-            console.log('linha 161');
+          
             
             e.preventDefault();
         });

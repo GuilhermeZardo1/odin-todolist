@@ -1,6 +1,7 @@
 import { Todo } from "./todo.js";
 import { Project } from "./projects.js";
 import { library } from "./library.js";
+import { viewFactory } from "./view.js";
 
 const modelFactory = function(){
 
@@ -27,17 +28,31 @@ const modelFactory = function(){
 
     function addToDo(project, title, description, dueDate, priority){
         let todo = new Todo(project, title, description, dueDate, priority);
-        library.activeProject.todos.push(todo);
+        library.activeProject.addToDo(todo);
         return todo;
     }
 
+    function removeToDo(todo){
+        const active = library.getActiveProject();
+        active.removeToDo(todo);
+    }
+
+    function showToDos(project){
+
+        for(let i = 0; i < project.todos.length; i++){
+            viewFactory.createToDo(project.todos[i].title, project.todos[i].description, project.todos[i].dueDate, project.todos[i].priority);
+        }
+
+    }
 
 
 return{
     createProject,
     removeProject,
     addToDo,
-    editToDo
+    editToDo,
+    removeToDo,
+    showToDos
 
 }
 }();
