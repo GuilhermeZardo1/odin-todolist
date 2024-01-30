@@ -26,6 +26,7 @@ const controller = function() {
             document.getElementById("content").classList.remove("content-flex");
             modelFactory.createProject(projectName);
             addEventListenerToProjects();
+            console.log(library.projects);
             if(Object.keys(library.projects).length === 1){
                 let project = document.querySelector(".project");
                 viewFactory.setActiveProject(project);
@@ -62,6 +63,7 @@ const controller = function() {
         
             viewFactory.removeProject(id);
             modelFactory.removeProject(library.getActiveProject());
+            console.log(library.projects);
             if(Object.keys(library.projects).length > 0){
                 library.setActiveProject(Object.keys(library.projects)[0]);
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
