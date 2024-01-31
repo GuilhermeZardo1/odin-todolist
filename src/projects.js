@@ -12,8 +12,7 @@ export class Project {
     }
 
     removeTodo(todoId) {
-        // Remove o todo pelo id
-        delete this.todos[todo.title];
+        delete this.todos[todoId]; // Corrigido para usar todoId
     }
 
     getTitle() {

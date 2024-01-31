@@ -28,13 +28,19 @@ const modelFactory = function(){
 
     function addToDo(project, title, description, dueDate, priority){
         let todo = new Todo(project, title, description, dueDate, priority);
-        library.activeProject.addToDo(todo);
-        return todo;
+    
+        if (library.activeProject instanceof Project) {
+            library.activeProject.addTodo(todo);
+            return todo;
+        } else {
+            console.error("No active project selected");
+            return null;
+        }
     }
 
     function removeToDo(todo){
         const active = library.getActiveProject();
-        active.removeToDo(todo);
+        active.removeTodo(todo);
     }
 
     function showToDos(project){

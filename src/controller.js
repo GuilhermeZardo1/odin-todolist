@@ -26,7 +26,7 @@ const controller = function() {
             document.getElementById("content").classList.remove("content-flex");
             modelFactory.createProject(projectName);
             addEventListenerToProjects();
-            console.log(library.projects);
+            //console.log("library projects: " + library.projects);
             if(Object.keys(library.projects).length === 1){
                 let project = document.querySelector(".project");
                 viewFactory.setActiveProject(project);
@@ -63,7 +63,7 @@ const controller = function() {
         
             viewFactory.removeProject(id);
             modelFactory.removeProject(library.getActiveProject());
-            console.log(library.projects);
+            //console.log("library projects: " + library.projects);
             if(Object.keys(library.projects).length > 0){
                 library.setActiveProject(Object.keys(library.projects)[0]);
                 let projectId = document.getElementById(Object.keys(library.projects)[0]);
@@ -97,14 +97,14 @@ const controller = function() {
     function removeToDoEventListener(btn){
         let removetodo = btn;
         removetodo.addEventListener("click", function(e){
+            const todo = e.target.parentNode.querySelector(".title").textContent;
+            console.log(todo);
             
             viewFactory.removeToDo(btn.parentNode);
+            modelFactory.removeToDo(todo); // Certifique-se de que 'todo' é o ID correto
+            console.log(library.getActiveProject().todos);
         });
     }
-
-  
-
-        
 
 
     function addTodoEventListener(){
@@ -170,6 +170,8 @@ const controller = function() {
             viewFactory.removeFormToDo();   
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
+            modelFactory.addToDo(library.getActiveProject(), title, description, dueDate, priority);
+            console.log(library.getActiveProject().todos);
             
             addEditEventListener();
          
