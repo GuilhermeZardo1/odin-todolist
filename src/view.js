@@ -289,6 +289,8 @@ const viewFactory = function () {
 
     function removeAllNodes(parent){
 
+        if (!parent) return;
+
         while (parent.firstChild) {
             parent.removeChild(parentNode.firstChild);
         }

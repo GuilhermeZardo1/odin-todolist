@@ -12,7 +12,9 @@ const controller = function() {
     let removeProject = document.getElementById("remove-project");
     
   
-
+    function isObjectEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
 
 
     function addProjectNameEventListener(){
@@ -83,11 +85,22 @@ const controller = function() {
                     if(projects[i].classList.contains("active")){
                         viewFactory.removeActiveProject(projects[i]);
                     }
-                    
-                    
                 }
                 e.target.classList.add("active");
                 library.setActiveProject(e.target.id);
+                viewFactory.setActiveProject(e.target);
+                const active = library.getActiveProject();
+                if (isObjectEmpty(active.todos)){
+                    console.log("empty");
+                    return;
+                }
+                const name = active.todos[0].title;
+
+                // REMOVER TODOS OS BIG TODOS. SELECIONAR O PARENTNODE DO BIGTODO
+                //console.log(name);
+                //const li = document.getElementById(name);
+                //viewFactory.removeToDos();
+
 
                 
             });
@@ -222,6 +235,7 @@ const controller = function() {
         showToDos,
         addAddToDoBtnEventListener,
         removeToDoEventListener,
+        isObjectEmpty,
         render
         
         
