@@ -1,4 +1,9 @@
 import { controller } from './controller.js';   
+import { modelFactory } from './model.js';
+import { Todo } from "./todo.js";
+import { Project } from "./projects.js";
+import { library } from "./library.js";
+
 
 const viewFactory = function () {
     
@@ -137,7 +142,7 @@ const viewFactory = function () {
 
         btn.addEventListener("click", function(e){
 
-            
+            const todoId = parentNode.querySelector(".title").textContent;
             parentNode.querySelector(".title").textContent = title.value;
             parentNode.querySelector(".description").textContent = description.value;
             parentNode.querySelector(".due-date").textContent = dueDate.value;
@@ -145,6 +150,14 @@ const viewFactory = function () {
             viewFactory.removeFormToDo();   
             document.querySelector(".main-content").classList.remove("hidden");
             document.getElementById("content").classList.remove("content-flex");
+            const active = library.getActiveProject();
+            console.log(active);
+            console.log(todoId);
+            const todo = active.todos[todoId];
+            console.log(todo);
+            modelFactory.removeToDo(todoId);
+            modelFactory.editToDo(active, todo, title.value, description.value, dueDate.value, priority.value);
+            console.log(library.getActiveProject().todos);
         
     });
 }
@@ -274,6 +287,14 @@ const viewFactory = function () {
         
     }
 
+    function removeAllNodes(parent){
+
+        while (parent.firstChild) {
+            parent.removeChild(parentNode.firstChild);
+        }
+
+    }
+
     
 
     return {
@@ -289,6 +310,7 @@ const viewFactory = function () {
         removeFormToDo,
         removeProject,
         removeToDo,
+        removeAllNodes
         
     }
 }();

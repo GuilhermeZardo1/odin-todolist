@@ -136,6 +136,7 @@ const controller = function() {
             viewFactory.editToDo(btn.parentNode);
     
             addSubmitEventListener(bigtodo);
+            
             e.preventDefault();
         });
     }

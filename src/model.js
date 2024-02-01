@@ -15,15 +15,20 @@ const modelFactory = function(){
         library.removeProject(project.title);
     }
 
-    function editToDo(title, project, description, dueDate, priority, todo){
+    function editToDo(project, todo, title, description, dueDate, priority){
+       
+        
         todo.title = title;
         todo.project = project;
         todo.description = description;
         todo.dueDate = dueDate;
         todo.priority = priority;
+        project.todos[todo.title] = todo;
 
 
-        return todo;
+        
+        
+
     }
 
     function addToDo(project, title, description, dueDate, priority){
