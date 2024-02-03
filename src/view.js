@@ -292,7 +292,7 @@ const viewFactory = function () {
         if (!parent) return;
 
         while (parent.firstChild) {
-            parent.removeChild(parentNode.firstChild);
+            parent.removeChild(parent.firstChild);
         }
 
     }

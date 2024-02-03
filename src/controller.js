@@ -90,11 +90,26 @@ const controller = function() {
                 library.setActiveProject(e.target.id);
                 viewFactory.setActiveProject(e.target);
                 const active = library.getActiveProject();
-                if (isObjectEmpty(active.todos)){
-                    console.log("empty");
-                    return;
+                const todolist = document.getElementById("todo-list");
+                if (todolist && todolist.hasChildNodes()) {
+                    viewFactory.removeAllNodes(todolist);
                 }
-                const name = active.todos[0].title;
+                if (!isObjectEmpty(active.todos)){
+                    
+                    
+                    
+                    for (let todo of Object.values(active.todos)){
+                        viewFactory.createToDo(todo.title, todo.description, todo.dueDate, todo.priority);
+                        console.log(todo.title, todo.description, todo.dueDate, todo.priority);
+                    }
+                    
+                }
+                
+                
+
+               
+
+                
 
                 // REMOVER TODOS OS BIG TODOS. SELECIONAR O PARENTNODE DO BIGTODO
                 //console.log(name);
