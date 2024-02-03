@@ -24,6 +24,7 @@ const viewFactory = function () {
         let bigTodo = document.createElement("div");
         bigTodo.classList.add("big-todo");
         
+        
         let btn = document.createElement("button");
         btn.classList.add("edit-to-do");
         btn.textContent = "edit";
